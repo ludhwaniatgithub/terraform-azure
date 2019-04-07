@@ -1,0 +1,31 @@
+
+
+provider "azurerm" {
+  # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
+  version = "=1.24.0"
+}
+
+resource "azurerm_resource_group" "main" {
+  name     = "test-resources"
+  location = "West US 2"
+}
+resource "azurerm_virtual_machine" "web" {
+  name                 = "terraform-test"
+  image                = "Ubuntu Server 14.04 LTS"
+  size                 = "Basic_A1"
+  storage_service_name = "yourstorage"
+  location             = "West US"
+  username             = "terraform"
+  password             = "Pass!admin123"
+  domain_name          = "contoso.com"
+  domain_ou            = "OU=Servers,DC=contoso.com,DC=Contoso,DC=com"
+  domain_username      = "Administrator"
+  domain_password      = "Pa$$word123"
+
+  endpoint {
+    name         = "SSH"
+    protocol     = "tcp"
+    public_port  = 22
+    private_port = 22
+  }
+}
