@@ -54,14 +54,14 @@ resource "azurerm_virtual_machine" "main" {
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = "test"
     admin_username = "testadmin"
-    admin_password = "Password1234!"
+    admin_password = "Password@1234"
   }
   os_profile_linux_config {
     disable_password_authentication = false
   }
   tags = {
-    environment = "staging"
+    environment = "production"
   }
 }
